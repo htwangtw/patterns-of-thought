@@ -10,10 +10,6 @@ from scipy.stats import sem
 
 import joblib
 from sklearn.model_selection import KFold, ParameterGrid
-
-# change home dir to the parent directory
-os.chdir('../')
-
 # load my modules
 from src.file_io import save_output
 from src.PMA_SCCA import SCCA

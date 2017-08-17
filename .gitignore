@@ -1,6 +1,8 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
+*.py*
 
 # C extensions
 *.so
@@ -71,3 +73,9 @@ target/
 
 # exclude data from source control by default
 /data/
+
+# R history
+.Rhistory
+
+# Vim
+*~

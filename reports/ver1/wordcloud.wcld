@@ -1,0 +1,33 @@
+61	Narrative	#053061
+54	Monologue	#053061
+40	Film	#6aacd0
+39	Friend	#6aacd0
+15	Words	#6aacd0
+9	Vagueness	#e58368
+5	Guilt	#e58368
+0	Distant~Location	0
+0	Social~Future	0
+0	DistantFuture	0
+0	NearLocation	0
+0	Cheerfulness	0
+0	Today~Future	0
+0	DistantPast	0
+0	Social~Past	0
+0	RecentPast	0
+0	Importance	0
+0	Today~Plan	0
+0	Today~Past	0
+0	NearFuture	0
+0	Happiness	0
+0	Fragment	0
+0	Concerns	0
+0	Worries	0
+0	Sadness	0
+0	Purpose	#e58368
+0	People	0
+0	Family	0
+0	Image	0
+0	Anger	0
+0	Calm	0
+--------------------CloudConfig v2.13--------------------
+{"seed":9140,"ZM_shape":{"char":"f04d","scale":1.1,"top":4,"weightFactor":10},"ZM_curShape":"fa-stop","ZM_curTheme":"t12","ZM_userWeightAdjust":-85,"ZM_userGridSizeAdjust":0,"ZM_canvasWidth":1024,"ZM_canvasHeight":768,"ZM_googleFont":null,"CO_shape":"circle","CO_backgroundColor":"#fff","CO_backgroundImage":null,"CO_colorArray":["#4c4c4c"],"CO_drawMask":false,"CO_maskColor":"rgba(0,0,0,0.1)","CO_fontFamily":"Arial,Helvetica,sans-serif","CO_wordDirection":"hor","CO_inverted":false}

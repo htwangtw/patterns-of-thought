@@ -1,0 +1,325 @@
+Type III MANOVA Tests: Pillai test statistic
+                 eta^2 Df test stat approx F num Df den Df Pr(>F)    
+(Intercept)      0.000  1     0.000    0.000      8    244  1.000    
+Age              0.013  1     0.013    0.402      8    244  0.919    
+Motion_Jenkinson 0.020  1     0.020    0.613      8    244  0.766    
+CC_01            0.129  1     0.129    4.509      8    244 <2e-16 ***
+CC_02            0.061  1     0.061    1.987      8    244  0.049 *  
+CC_03            0.055  1     0.055    1.766      8    244  0.084 .  
+CC_04            0.030  1     0.030    0.947      8    244  0.478    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+[1] "DKEFSCWI_40"
+Anova Table (Type III tests)
+
+Response: DKEFSCWI_40
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)   
+(Intercept)              0.000   0.000   1   0.000  1.000   
+Age                      0.003   0.720   1   0.741  0.390   
+Motion_Jenkinson         0.000   0.010   1   0.010  0.919   
+CC_01                    0.029   7.271   1   7.482  0.007 **
+CC_02                    0.012   2.875   1   2.959  0.087 . 
+CC_03                    0.009   2.332   1   2.399  0.123   
+CC_04                    0.007   1.654   1   1.702  0.193   
+Residuals                      243.925 251                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.9992 -0.5297  0.1231  0.7847  2.2013 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)   
+(Intercept)             1.000 -0.121  0.121    0.000      0.061   0.000    1.000   
+Age                     1.000 -0.075  0.192    0.058      0.068   0.861    0.390   
+Motion_Jenkinson        1.000 -0.125  0.139    0.007      0.067   0.101    0.919   
+CC_01                   0.047  0.098  0.604    0.351      0.128   2.735    0.007 **
+CC_02                   0.607 -0.485  0.033   -0.226      0.131  -1.720    0.087 . 
+CC_03                   0.859 -0.056  0.469    0.207      0.133   1.549    0.123   
+CC_04                   1.000 -0.064  0.314    0.125      0.096   1.304    0.193   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9858 on 251 degrees of freedom
+Multiple R-squared:  0.05455,	Adjusted R-squared:  0.03195 
+F-statistic: 2.414 on 6 and 251 DF,  p-value: 0.02756
+
+[1] "TOWER_57"
+Anova Table (Type III tests)
+
+Response: TOWER_57
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)              0.000   0.000   1   0.000  1.000
+Age                      0.000   0.006   1   0.006  0.939
+Motion_Jenkinson         0.010   2.406   1   2.456  0.118
+CC_01                    0.000   0.010   1   0.010  0.921
+CC_02                    0.007   1.823   1   1.861  0.174
+CC_03                    0.004   1.019   1   1.040  0.309
+CC_04                    0.010   2.603   1   2.657  0.104
+Residuals                      245.918 251               
+
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.56069 -0.61783  0.06996  0.59932  2.67789 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)             1.000 -0.121  0.121    0.000      0.062   0.000    1.000
+Age                     1.000 -0.139  0.129   -0.005      0.068  -0.076    0.939
+Motion_Jenkinson        0.828 -0.238  0.027   -0.105      0.067  -1.567    0.118
+CC_01                   1.000 -0.241  0.267    0.013      0.129   0.099    0.921
+CC_02                   1.000 -0.080  0.440    0.180      0.132   1.364    0.174
+CC_03                   1.000 -0.127  0.400    0.137      0.134   1.020    0.309
+CC_04                   0.730 -0.346  0.033   -0.157      0.096  -1.630    0.104
+
+Residual standard error: 0.9898 on 251 degrees of freedom
+Multiple R-squared:  0.04683,	Adjusted R-squared:  0.02404 
+F-statistic: 2.055 on 6 and 251 DF,  p-value: 0.05906
+
+[1] "DKEFSTMT_48"
+Anova Table (Type III tests)
+
+Response: DKEFSTMT_48
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)              0.000   0.000   1   0.000  1.000
+Age                      0.005   1.163   1   1.176  0.279
+Motion_Jenkinson         0.001   0.340   1   0.344  0.558
+CC_01                    0.011   2.691   1   2.722  0.100
+CC_02                    0.004   0.888   1   0.898  0.344
+CC_03                    0.010   2.628   1   2.658  0.104
+CC_04                    0.004   1.048   1   1.060  0.304
+Residuals                      248.168 251               
+
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.1895 -0.7893  0.5286  0.7448  1.0826 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)             1.000 -0.122  0.122    0.000      0.062   0.000    1.000
+Age                     1.000 -0.208  0.060   -0.074      0.068  -1.085    0.279
+Motion_Jenkinson        1.000 -0.173  0.093   -0.040      0.068  -0.587    0.558
+CC_01                   0.702 -0.041  0.469    0.214      0.130   1.650    0.100
+CC_02                   1.000 -0.135  0.386    0.126      0.132   0.948    0.344
+CC_03                   0.730 -0.046  0.484    0.219      0.135   1.630    0.104
+CC_04                   1.000 -0.091  0.290    0.099      0.097   1.030    0.304
+
+Residual standard error: 0.9943 on 251 degrees of freedom
+Multiple R-squared:  0.03811,	Adjusted R-squared:  0.01511 
+F-statistic: 1.657 on 6 and 251 DF,  p-value: 0.132
+
+[1] "DF_29"
+Anova Table (Type III tests)
+
+Response: DF_29
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)   
+(Intercept)              0.000   0.000   1   0.000  1.000   
+Age                      0.000   0.000   1   0.000  0.984   
+Motion_Jenkinson         0.000   0.000   1   0.000  0.996   
+CC_01                    0.027   6.948   1   7.013  0.009 **
+CC_02                    0.000   0.013   1   0.013  0.909   
+CC_03                    0.018   4.555   1   4.597  0.033 * 
+CC_04                    0.000   0.004   1   0.004  0.951   
+Residuals                      248.662 251                  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.6971 -0.6536  0.1431  0.7097  1.9197 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)   
+(Intercept)             1.000 -0.122  0.122    0.000      0.062   0.000    1.000   
+Age                     1.000 -0.136  0.133   -0.001      0.068  -0.021    0.984   
+Motion_Jenkinson        1.000 -0.133  0.134    0.000      0.068   0.006    0.996   
+CC_01                   0.060  0.088  0.599    0.343      0.130   2.648    0.009 **
+CC_02                   1.000 -0.246  0.276    0.015      0.133   0.115    0.909   
+CC_03                   0.231  0.024  0.554    0.289      0.135   2.144    0.033 * 
+CC_04                   1.000 -0.185  0.196    0.006      0.097   0.062    0.951   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9953 on 251 degrees of freedom
+Multiple R-squared:  0.0362,	Adjusted R-squared:  0.01316 
+F-statistic: 1.571 on 6 and 251 DF,  p-value: 0.156
+
+[1] "PROV_16"
+Anova Table (Type III tests)
+
+Response: PROV_16
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)    
+(Intercept)              0.000   0.000   1   0.000  1.000    
+Age                      0.001   0.162   1   0.177  0.674    
+Motion_Jenkinson         0.003   0.630   1   0.687  0.408    
+CC_01                    0.098  24.905   1  27.174 <2e-16 ***
+CC_02                    0.026   6.141   1   6.701  0.010 ** 
+CC_03                    0.012   2.813   1   3.070  0.081 .  
+CC_04                    0.002   0.434   1   0.474  0.492    
+Residuals                      230.043 251                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-2.7096 -0.5482  0.1182  0.6583  1.9793 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             1.000 -0.117  0.117    0.000      0.060   0.000    1.000    
+Age                     1.000 -0.157  0.102   -0.028      0.066  -0.421    0.674    
+Motion_Jenkinson        1.000 -0.182  0.074   -0.054      0.065  -0.829    0.408    
+CC_01                   0.000  0.405  0.896    0.650      0.125   5.213   <2e-16 ***
+CC_02                   0.071 -0.581 -0.079   -0.330      0.128  -2.589    0.010 ** 
+CC_03                   0.567 -0.028  0.482    0.227      0.130   1.752    0.081 .  
+CC_04                   1.000 -0.119  0.247    0.064      0.093   0.689    0.492    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9573 on 251 degrees of freedom
+Multiple R-squared:  0.1084,	Adjusted R-squared:  0.08705 
+F-statistic: 5.084 on 6 and 251 DF,  p-value: 6.045e-05
+
+[1] "VF_37"
+Anova Table (Type III tests)
+
+Response: VF_37
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)              0.000   0.000   1   0.000  1.000
+Age                      0.001   0.199   1   0.198  0.657
+Motion_Jenkinson         0.007   1.783   1   1.768  0.185
+CC_01                    0.007   1.742   1   1.728  0.190
+CC_02                    0.000   0.053   1   0.053  0.818
+CC_03                    0.002   0.463   1   0.459  0.499
+CC_04                    0.003   0.726   1   0.720  0.397
+Residuals                      253.122 251               
+
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.23939 -0.61225 -0.02798  0.61016  2.28365 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)             1.000 -0.123  0.123    0.000      0.063   0.000    1.000
+Age                     1.000 -0.105  0.166    0.031      0.069   0.445    0.657
+Motion_Jenkinson        1.000 -0.225  0.044   -0.091      0.068  -1.330    0.185
+CC_01                   1.000 -0.086  0.430    0.172      0.131   1.314    0.190
+CC_02                   1.000 -0.233  0.294    0.031      0.134   0.230    0.818
+CC_03                   1.000 -0.176  0.360    0.092      0.136   0.678    0.499
+CC_04                   1.000 -0.109  0.275    0.083      0.098   0.848    0.397
+
+Residual standard error: 1.004 on 251 degrees of freedom
+Multiple R-squared:  0.01891,	Adjusted R-squared:  -0.004544 
+F-statistic: 0.8062 on 6 and 251 DF,  p-value: 0.5659
+
+[1] "INT_17"
+Anova Table (Type III tests)
+
+Response: INT_17
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)    
+(Intercept)              0.000   0.000   1   0.000  1.000    
+Age                      0.003   0.697   1   0.735  0.392    
+Motion_Jenkinson         0.001   0.162   1   0.171  0.680    
+CC_01                    0.049  12.315   1  12.993 <2e-16 ***
+CC_02                    0.000   0.086   1   0.090  0.764    
+CC_03                    0.041  10.121   1  10.678  0.001 ***
+CC_04                    0.001   0.216   1   0.228  0.633    
+Residuals                      237.905 251                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.80727 -0.78472 -0.06636  0.75071  2.19807 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             1.000 -0.119  0.119    0.000      0.061   0.000    1.000    
+Age                     1.000 -0.189  0.074   -0.057      0.067  -0.858    0.392    
+Motion_Jenkinson        1.000 -0.158  0.103   -0.027      0.066  -0.414    0.680    
+CC_01                   0.003  0.207  0.707    0.457      0.127   3.605   <2e-16 ***
+CC_02                   1.000 -0.294  0.216   -0.039      0.130  -0.300    0.764    
+CC_03                   0.009  0.171  0.690    0.431      0.132   3.268    0.001 ***
+CC_04                   1.000 -0.232  0.141   -0.045      0.095  -0.478    0.633    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9736 on 251 degrees of freedom
+Multiple R-squared:  0.07789,	Adjusted R-squared:  0.05584 
+F-statistic: 3.533 on 6 and 251 DF,  p-value: 0.002243
+
+[1] "WIAT_08"
+Anova Table (Type III tests)
+
+Response: WIAT_08
+                 Partial eta^2  Sum Sq  Df F value Pr(>F)    
+(Intercept)              0.000   0.000   1   0.000  1.000    
+Age                      0.001   0.314   1   0.325  0.569    
+Motion_Jenkinson         0.002   0.372   1   0.385  0.535    
+CC_01                    0.045  11.553   1  11.959  0.001 ***
+CC_02                    0.005   1.262   1   1.307  0.254    
+CC_03                    0.023   5.762   1   5.965  0.015 *  
+CC_04                    0.000   0.035   1   0.036  0.850    
+Residuals                      242.469 251                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ Age + Motion_Jenkinson + CC_01 + CC_02 + CC_03 + CC_04"), data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-2.30463 -0.63444  0.05675  0.78110  2.17063 
+
+Coefficients:
+                 p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)    
+(Intercept)             1.000 -0.121  0.121    0.000      0.061   0.000    1.000    
+Age                     1.000 -0.171  0.094   -0.038      0.067  -0.570    0.569    
+Motion_Jenkinson        1.000 -0.173  0.090   -0.041      0.067  -0.621    0.535    
+CC_01                   0.004  0.191  0.695    0.443      0.128   3.458    0.001 ***
+CC_02                   1.000 -0.408  0.108   -0.150      0.131  -1.143    0.254    
+CC_03                   0.107  0.063  0.587    0.325      0.133   2.442    0.015 *  
+CC_04                   1.000 -0.170  0.206    0.018      0.096   0.189    0.850    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9829 on 251 degrees of freedom
+Multiple R-squared:  0.0602,	Adjusted R-squared:  0.03773 
+F-statistic: 2.679 on 6 and 251 DF,  p-value: 0.01542
+
+	Chi-squared test for given probabilities
+
+data:  thought_tbl
+X-squared = 26.419, df = 3, p-value = 7.791e-06
+
+data:  brain_tbl
+X-squared = 13.048, df = 4, p-value = 0.01105

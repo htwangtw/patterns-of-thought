@@ -11,7 +11,7 @@ colnames(Y) <- colnames(df[,5:12])
 # reorder
 Y <- Y[, c(1, 4, 5, 2, 3, 6, 7, 8)]
 # reverse cc1 for intepretation
-df$CC_01 <- -df$CC_01
+df$CC_03 <- -df$CC_03
 
 # DV-intellegence EV-Yeo 7 MANOVA
 Yeo7_m1 <- lm(Y ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
@@ -35,13 +35,13 @@ for(i in c(1:length(colnames(Y)))){
   
   # Export the beta and p value for plotting
   cat(paraest$coefficients[,4],
-      file="../reports/paraest.txt",sep="\t", append = TRUE)
+      file="../reports/rev_paraest.txt",sep="\t", append = TRUE)
   cat("\n",
-      file="../reports/paraest.txt",sep="\t", append = TRUE)
+      file="../reports/rev_paraest.txt",sep="\t", append = TRUE)
   cat(paraest$coefficients[,7],
-      file="../reports/paraest_p.txt",sep="\t", append = TRUE)
+      file="../reports/rev_paraest_p.txt",sep="\t", append = TRUE)
   cat("\n",
-      file="../reports/paraest_p.txt",sep="\t", append = TRUE)
+      file="../reports/rev_paraest_p.txt",sep="\t", append = TRUE)
   paraest$coefficients <- round(paraest$coefficients, digits = 3)
   print(paraest)
 }

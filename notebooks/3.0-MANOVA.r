@@ -10,7 +10,7 @@ X <-data.matrix(df[,12:ncol(df)])
 colnames(Y) <- colnames(df[,5:12])
 # reorder
 Y <- Y[, c(1, 4, 5, 2, 3, 6, 7, 8)]
-# reverse cc1 for intepretation
+# reverse cc3 for intepretation
 df$CC_03 <- -df$CC_03
 
 # DV-intellegence EV-Yeo 7 MANOVA
@@ -35,13 +35,13 @@ for(i in c(1:length(colnames(Y)))){
   
   # Export the beta and p value for plotting
   cat(paraest$coefficients[,4],
-      file="../reports/rev_paraest.txt",sep="\t", append = TRUE)
+      file="../reports/Yeo7_paraest.txt",sep="\t", append = TRUE)
   cat("\n",
-      file="../reports/rev_paraest.txt",sep="\t", append = TRUE)
+      file="../reports/Yeo7_paraest.txt",sep="\t", append = TRUE)
   cat(paraest$coefficients[,7],
-      file="../reports/rev_paraest_p.txt",sep="\t", append = TRUE)
+      file="../reports/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
   cat("\n",
-      file="../reports/rev_paraest_p.txt",sep="\t", append = TRUE)
+      file="../reports/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
   paraest$coefficients <- round(paraest$coefficients, digits = 3)
   print(paraest)
 }
@@ -50,10 +50,9 @@ for(i in c(1:length(colnames(Y)))){
 # Chi^2 test
 
 
-df_u_count <- read.csv('../reports/ver1/FC_n_feature.csv', header = TRUE, sep = ',')
-df_v_count <- read.csv('../reports/ver1/MRIQ_n_feature.csv', header = TRUE, sep = ',')
-
-brain_tbl = table(df_u_count$COUNT, df_u_count$CHANCE) 
+df_u_count <- read.csv('../reports/Yeo7_FC_n_feature.csv', header = TRUE, sep = ',')
+df_v_count <- read.csv('../reports/Yeo7_MRIQ_n_feature.csv', header = TRUE, sep = ',')
+brain_tbl = table(df_u_count$count, df_u_count$chance) 
 chisq.test(brain_tbl) 
-thought_tbl = table(df_v_count$COUNT, df_v_count$CHANCE) 
+thought_tbl = table(df_v_count$count, df_v_count$chance) 
 chisq.test(thought_tbl) 

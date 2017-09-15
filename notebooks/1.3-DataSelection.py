@@ -25,7 +25,7 @@ load data
 
 FC_subj = np.load('./data/interim/data_cross_corr_Yeo17_preprocessed_pptID.npy')
 PATHS_FC = glob.glob('./data/interim/data_*_preprocessed.npy')
-PATHS_ROI = glob.glob('./data/interim/data_*_ROIs.npy')
+PATHS_ROI = glob.glob('./data/interim/data_*_ROI.npy')
 
 
 def load_csv_pd(path, header_row_n):

@@ -34,14 +34,29 @@ for(i in c(1:length(colnames(Y)))){
   colnames(paraest$coefficients)[1] <- "p.bonferroni"
   
   # Export the beta and p value for plotting
-  cat(paraest$coefficients[,4],
-      file="../reports/Yeo7_paraest.txt",sep="\t", append = TRUE)
+  # cat(paraest$coefficients[,4],
+  #     file="../reports/Yeo7/Yeo7_paraest.txt",sep="\t", append = TRUE)
+  # cat("\n",
+  #     file="../reports/Yeo7/Yeo7_paraest.txt",sep="\t", append = TRUE)
+  # cat(paraest$coefficients[,7],
+  #     file="../reports/Yeo7/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
+  # cat("\n",
+  #     file="../reports/Yeo7/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
+  # 
+  # cat(paraest$coefficients[,2:3],
+  #     file="../reports/Yeo7/Yeo7_paraest_CI.txt",sep="\t", append = TRUE)
+  # cat("\n",
+  #     file="../reports/Yeo7/Yeo7_paraest_CI.txt",sep="\t", append = TRUE)
+  
+  # cat(paraest$coefficients[,6],
+  #     file="../reports/Yeo7/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
+  # cat("\n",
+  #     file="../reports/Yeo7/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
+  
+  cat(paraest$coefficients[,5],
+      file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
   cat("\n",
-      file="../reports/Yeo7_paraest.txt",sep="\t", append = TRUE)
-  cat(paraest$coefficients[,7],
-      file="../reports/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
-  cat("\n",
-      file="../reports/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
+      file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
   paraest$coefficients <- round(paraest$coefficients, digits = 3)
   print(paraest)
 }

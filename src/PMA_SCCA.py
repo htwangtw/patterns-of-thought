@@ -130,7 +130,7 @@ class SCCA(object):
         else:
             Xk, Yk = X, Y
         return Xk.dot(self.u), Yk.dot(self.v)
-    
+
     def score(self, X, Y):
         '''
         Returns the coefficient of determination R^2
@@ -147,17 +147,17 @@ class SCCA(object):
     #     X = zscore(X)
     #     Ypred = np.dot(X, self.coef_.T)
     #     return Ypred
-        
+
     # def summary(self):
     #     '''
-        
+
     #     print the summary table of SCCA
 
     #     '''
     #     print 'Penalty - X: {}; Penalty - Y: {}'.format(self.penX, self.penY)
     #     print 'Size of the canonical weights of X:', self.u.shape
     #     print 'Size of the canonical weights of Y:', self.v.shape
-    
+
     def component_explained(self, X, Y, show_results=True):
         '''
         calculate the explained variable percentage of all possible components.
@@ -185,7 +185,6 @@ class SCCA(object):
                 plt.xticks(range(0, self.n_components + 1)[1:])
                 plt.title('{} total % variance explained'.format(cur))
             return fig
-        
         # save the original number of components set by the user
         original_n = self.n_components
 
@@ -196,7 +195,6 @@ class SCCA(object):
     	    Xk, Yk = zscore(X), zscore(Y)
         else:
 	        Xk, Yk = X, Y
-    
         # fit data
         SCCA.fit(self, Xk, Yk)
         u, v = self.u, self.v
@@ -210,13 +208,13 @@ class SCCA(object):
             y_ev_c = _Rsquare(Yk, v[:, i:(i + 1)])
             x_ev_componnets.append(x_ev_c)
             y_ev_componnets.append(y_ev_c)
-        
+
         ev_componnets_summary = np.vstack((np.array(x_ev_componnets), np.array(y_ev_componnets)))
 
         self.component_evs_summary = np.transpose(
             np.array([range(1, self.n_components + 1)] + [x_ev_componnets] + [y_ev_componnets]))
         self.component_evs_plot = plot_expvar(self, ev_componnets_summary)
-        
+
         self.n_components = original_n
 
         if show_results:
@@ -275,7 +273,7 @@ class SCCA(object):
         if show_results:
             table_expvar(self.model_evs_summary)
             self.model_evs_plot.show()
-            
+
         return self
 
 
@@ -325,7 +323,7 @@ def table_expvar(ev_summary):
 #                 argu <- y.dot(v).dot(x)
 #                 if upos: argu = np.maximum(argu, 0)
 #                 if uneg: argu = np.minimum(argu, 0)
-#                 lamu = 
+#                 lamu =
 #     return None
 
 def _center_xy(X, Y, scale=True):

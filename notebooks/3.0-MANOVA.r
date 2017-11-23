@@ -3,16 +3,13 @@ library(heplots)
 library(lsr)
 library(MASS)
 
-df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.4_0.8.csv', header = TRUE, sep = ',')
+df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.4_0.9.csv', header = TRUE, sep = ',')
 # set the target
 Y <- data.matrix(df[,5:12])
 X <-data.matrix(df[,12:ncol(df)])
 colnames(Y) <- colnames(df[,5:12])
 # reorder
 Y <- Y[, c(1, 4, 5, 2, 3, 6, 7, 8)]
-# reverse cc3 for intepretation
-df$CC_03 <- -df$CC_03
-df$CC_02 <- -df$CC_02
 
 # DV-intellegence EV-Yeo 7 MANOVA
 Yeo7_m1 <- lm(Y ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)

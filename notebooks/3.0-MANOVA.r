@@ -3,7 +3,7 @@ library(heplots)
 library(lsr)
 library(MASS)
 
-df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.4_0.9.csv', header = TRUE, sep = ',')
+df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.9_0.4.csv', header = TRUE, sep = ',')
 # set the target
 Y <- data.matrix(df[,5:12])
 X <-data.matrix(df[,12:ncol(df)])
@@ -51,10 +51,10 @@ for(i in c(1:length(colnames(Y)))){
   # cat("\n",
   #     file="../reports/Yeo7/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
   
-  cat(paraest$coefficients[,5],
-      file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
-  cat("\n",
-      file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
+  # cat(paraest$coefficients[,5],
+  #     file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
+  # cat("\n",
+  #     file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
   paraest$coefficients <- round(paraest$coefficients, digits = 3)
   print(paraest)
 }

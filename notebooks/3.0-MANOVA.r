@@ -3,7 +3,7 @@ library(heplots)
 library(lsr)
 library(MASS)
 
-df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.9_0.4.csv', header = TRUE, sep = ',')
+df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.8_0.9.csv', header = TRUE, sep = ',')
 # set the target
 Y <- data.matrix(df[,5:12])
 X <-data.matrix(df[,12:ncol(df)])
@@ -32,29 +32,29 @@ for(i in c(1:length(colnames(Y)))){
   colnames(paraest$coefficients)[1] <- "p.bonferroni"
   
   # Export the beta and p value for plotting
-  # cat(paraest$coefficients[,4],
-  #     file="../reports/Yeo7/Yeo7_paraest.txt",sep="\t", append = TRUE)
-  # cat("\n",
-  #     file="../reports/Yeo7/Yeo7_paraest.txt",sep="\t", append = TRUE)
-  # cat(paraest$coefficients[,7],
-  #     file="../reports/Yeo7/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
-  # cat("\n",
-  #     file="../reports/Yeo7/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
-  # 
-  # cat(paraest$coefficients[,2:3],
-  #     file="../reports/Yeo7/Yeo7_paraest_CI.txt",sep="\t", append = TRUE)
-  # cat("\n",
-  #     file="../reports/Yeo7/Yeo7_paraest_CI.txt",sep="\t", append = TRUE)
-  
-  # cat(paraest$coefficients[,6],
-  #     file="../reports/Yeo7/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
-  # cat("\n",
-  #     file="../reports/Yeo7/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
-  
-  # cat(paraest$coefficients[,5],
-  #     file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
-  # cat("\n",
-  #     file="../reports/Yeo7/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
+  cat(paraest$coefficients[,4],
+      file="../reports/revision/Yeo7_paraest.txt",sep="\t", append = TRUE)
+  cat("\n",
+      file="../reports/revision/Yeo7_paraest.txt",sep="\t", append = TRUE)
+  cat(paraest$coefficients[,7],
+      file="../reports/revision/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
+  cat("\n",
+      file="../reports/revision/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
+
+  cat(paraest$coefficients[,2:3],
+      file="../reports/revision/Yeo7_paraest_CI.txt",sep="\t", append = TRUE)
+  cat("\n",
+      file="../reports/revision/Yeo7_paraest_CI.txt",sep="\t", append = TRUE)
+
+  cat(paraest$coefficients[,6],
+      file="../reports/revision/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
+  cat("\n",
+      file="../reports/revision/Yeo7_paraest_t.txt",sep="\t", append = TRUE)
+
+  cat(paraest$coefficients[,5],
+      file="../reports/revision/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
+  cat("\n",
+      file="../reports/revision/Yeo7_paraest_err.txt",sep="\t", append = TRUE)
   paraest$coefficients <- round(paraest$coefficients, digits = 3)
   print(paraest)
 }

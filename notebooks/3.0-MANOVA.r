@@ -10,11 +10,11 @@ X <-data.matrix(df[,12:ncol(df)])
 colnames(Y) <- colnames(df[,5:12])
 # reorder
 Y <- Y[, c(1, 4, 5, 2, 3, 6, 7, 8)]
-
+df$CC_01 <- -df$CC_01
 # DV-intellegence EV-Yeo 7 MANOVA
 Yeo7_m1 <- lm(Y ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
 # get manova eta square
-mod.manova <-  Manova(Yeo7_m1, type = 3, test = "Pillai")
+mod.manova <-  Manova(Yeo7_m1, type = 3, test = "Pillai", p.adjust.methods = "bonferroni")
 print(round(etasq(mod.manova, anova = TRUE), 3))
 
 # univariate results and parameter estimate
@@ -36,7 +36,7 @@ for(i in c(1:length(colnames(Y)))){
       file="../reports/revision/Yeo7_paraest.txt",sep="\t", append = TRUE)
   cat("\n",
       file="../reports/revision/Yeo7_paraest.txt",sep="\t", append = TRUE)
-  cat(paraest$coefficients[,7],
+  cat(paraest$coefficients[,1],
       file="../reports/revision/Yeo7_paraest_p.txt",sep="\t", append = TRUE)
   cat("\n",
       file="../reports/revision/Yeo7_paraest_p.txt",sep="\t", append = TRUE)

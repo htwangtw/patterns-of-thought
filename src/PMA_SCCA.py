@@ -133,15 +133,14 @@ class SCCA(object):
 
     def score(self, X, Y):
         '''
-        Returns the coefficient of determination R^2
+        Returns the canonical correlation
         '''
         if self.scale:
             Xk, Yk = zscore(X), zscore(Y)
         else:
             Xk, Yk = X, Y
         cancorr = _cancorr(Xk, Yk, self.u, self.v)
-        r2_sum = (cancorr ** 2).sum()
-        return r2_sum
+        return cancorr
 
     # def predict(self, X):
     #     X = zscore(X)

@@ -3,7 +3,7 @@ library(heplots)
 library(lsr)
 library(MASS)
 
-df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.8_0.9.csv', header = TRUE, sep = ',')
+df <- read.csv('../data/processed/NYCQ_CCA_score_rev1_4_0.9_0.4.csv', header = TRUE, sep = ',')
 # set the target
 Y <- data.matrix(df[,5:12])
 X <-data.matrix(df[,12:ncol(df)])

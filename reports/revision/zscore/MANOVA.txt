@@ -1,0 +1,289 @@
+Type III MANOVA Tests: Pillai test statistic
+            Df test stat approx F num Df den Df    Pr(>F)
+(Intercept)  1  0.000000   0.0000      8    246 1.0000000
+CC_01        1  0.111825   3.8716      8    246 0.0002565 ***
+CC_02        1  0.130185   4.6023      8    246 3.003e-05 ***
+CC_03        1  0.025222   0.7956      8    246 0.6069375
+CC_04        1  0.044287   1.4249      8    246 0.1864259
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+[1] "DKEFSCWI_40"
+Anova Table (Type III tests)
+
+Response: DKEFSCWI_40
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.029   7.154   1   7.492  0.007 **
+CC_02               0.041  10.356   1  10.845  0.001 ***
+CC_03               0.001   0.346   1   0.362  0.548
+CC_04               0.004   0.980   1   1.026  0.312
+Residuals                 241.599 253
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-3.13413 -0.50032  0.08262  0.78691  2.16910
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.120  0.120    0.000      0.061   0.000    1.000
+CC_01              0.033  0.097  0.596    0.347      0.127   2.737    0.007 **
+CC_02              0.006 -0.606 -0.152   -0.379      0.115  -3.293    0.001 ***
+CC_03              1.000 -0.242  0.129   -0.057      0.094  -0.602    0.548
+CC_04              1.000 -0.357  0.114   -0.121      0.120  -1.013    0.312
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9772 on 253 degrees of freedom
+Multiple R-squared:  0.06357,	Adjusted R-squared:  0.04876
+F-statistic: 4.294 on 4 and 253 DF,  p-value: 0.002228
+
+[1] "TOWER_57"
+Anova Table (Type III tests)
+
+Response: TOWER_57
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.000   0.051   1   0.050  0.823
+CC_02               0.001   0.223   1   0.222  0.638
+CC_03               0.007   1.909   1   1.901  0.169
+CC_04               0.001   0.371   1   0.369  0.544
+Residuals                 254.130 253
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-2.59792 -0.58804  0.01377  0.65589  2.50401
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.123  0.123    0.000      0.062   0.000    1.000
+CC_01              1.000 -0.227  0.285    0.029      0.130   0.224    0.823
+CC_02              1.000 -0.288  0.177   -0.056      0.118  -0.471    0.638
+CC_03              0.846 -0.057  0.324    0.133      0.097   1.379    0.169
+CC_04              1.000 -0.167  0.316    0.075      0.123   0.608    0.544
+
+Residual standard error: 1.002 on 253 degrees of freedom
+Multiple R-squared:  0.015,	Adjusted R-squared:  -0.0005746
+F-statistic: 0.9631 on 4 and 253 DF,  p-value: 0.4283
+
+[1] "DKEFSTMT_48"
+Anova Table (Type III tests)
+
+Response: DKEFSTMT_48
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.000   0.000   1   0.000  0.996
+CC_02               0.000   0.033   1   0.033  0.857
+CC_03               0.003   0.858   1   0.853  0.357
+CC_04               0.008   2.017   1   2.005  0.158
+Residuals                 254.465 253
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-3.3709 -0.7814  0.5745  0.7316  0.9244
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.123  0.123    0.000      0.062   0.000    1.000
+CC_01              1.000 -0.257  0.255   -0.001      0.130  -0.005    0.996
+CC_02              1.000 -0.254  0.211   -0.021      0.118  -0.181    0.857
+CC_03              1.000 -0.280  0.101   -0.089      0.097  -0.923    0.357
+CC_04              0.790 -0.068  0.416    0.174      0.123   1.416    0.158
+
+Residual standard error: 1.003 on 253 degrees of freedom
+Multiple R-squared:  0.0137,	Adjusted R-squared:  -0.001893
+F-statistic: 0.8786 on 4 and 253 DF,  p-value: 0.4773
+
+[1] "DF_29"
+Anova Table (Type III tests)
+
+Response: DF_29
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.025   6.369   1   6.415  0.012 *
+CC_02               0.008   1.959   1   1.973  0.161
+CC_03               0.001   0.262   1   0.264  0.608
+CC_04               0.002   0.566   1   0.570  0.451
+Residuals                 251.206 253
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-2.7079 -0.5994  0.1504  0.6896  1.8570
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.122  0.122    0.000      0.062   0.000    1.000
+CC_01              0.060  0.073  0.582    0.327      0.129   2.533    0.012 *
+CC_02              0.807 -0.396  0.066   -0.165      0.117  -1.405    0.161
+CC_03              1.000 -0.239  0.140   -0.049      0.096  -0.513    0.608
+CC_04              1.000 -0.332  0.148   -0.092      0.122  -0.755    0.451
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9964 on 253 degrees of freedom
+Multiple R-squared:  0.02633,	Adjusted R-squared:  0.01094
+F-statistic: 1.711 on 4 and 253 DF,  p-value: 0.1481
+
+[1] "PROV_16"
+Anova Table (Type III tests)
+
+Response: PROV_16
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.055  14.236   1  14.866 <2e-16 ***
+CC_02               0.024   6.048   1   6.315  0.013 *
+CC_03               0.000   0.000   1   0.000  0.995
+CC_04               0.010   2.373   1   2.478  0.117
+Residuals                 242.288 253
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-2.91372 -0.52723  0.09341  0.68774  1.85021
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.120  0.120    0.000      0.061   0.000    1.000
+CC_01              0.001  0.239  0.739    0.489      0.127   3.856   <2e-16 ***
+CC_02              0.063 -0.517 -0.063   -0.290      0.115  -2.513    0.013 *
+CC_03              1.000 -0.185  0.187    0.001      0.094   0.007    0.995
+CC_04              0.583 -0.424  0.047   -0.189      0.120  -1.574    0.117
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9786 on 253 degrees of freedom
+Multiple R-squared:  0.0609,	Adjusted R-squared:  0.04605
+F-statistic: 4.102 on 4 and 253 DF,  p-value: 0.003075
+
+[1] "VF_37"
+Anova Table (Type III tests)
+
+Response: VF_37
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.001   0.355   1   0.359  0.550
+CC_02               0.019   4.915   1   4.963  0.027 *
+CC_03               0.000   0.055   1   0.056  0.814
+CC_04               0.013   3.391   1   3.425  0.065 .
+Residuals                 250.518 253
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-2.40802 -0.62699  0.00343  0.70368  2.43041
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.122  0.122    0.000      0.062   0.000    1.000
+CC_01              1.000 -0.177  0.331    0.077      0.129   0.599    0.550
+CC_02              0.134 -0.492 -0.030   -0.261      0.117  -2.228    0.027 *
+CC_03              1.000 -0.212  0.166   -0.023      0.096  -0.236    0.814
+CC_04              0.327 -0.014  0.465    0.225      0.122   1.851    0.065 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9951 on 253 degrees of freedom
+Multiple R-squared:  0.029,	Adjusted R-squared:  0.01365
+F-statistic: 1.889 on 4 and 253 DF,  p-value: 0.1128
+
+[1] "INT_17"
+Anova Table (Type III tests)
+
+Response: INT_17
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.048  11.760   1  12.720 <2e-16 ***
+CC_02               0.079  19.939   1  21.567 <2e-16 ***
+CC_03               0.005   1.164   1   1.259  0.263
+CC_04               0.001   0.184   1   0.199  0.656
+Residuals                 233.899 253
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+    Min      1Q  Median      3Q     Max
+-1.8886 -0.6980  0.0080  0.6808  2.1671
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.118  0.118    0.000      0.060   0.000    1.000
+CC_01              0.002  0.199  0.690    0.445      0.125   3.567   <2e-16 ***
+CC_02              0.000 -0.749 -0.303   -0.526      0.113  -4.644   <2e-16 ***
+CC_03              1.000 -0.079  0.287    0.104      0.093   1.122    0.263
+CC_04              1.000 -0.284  0.179   -0.052      0.118  -0.446    0.656
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9615 on 253 degrees of freedom
+Multiple R-squared:  0.09342,	Adjusted R-squared:  0.07908
+F-statistic: 6.517 on 4 and 253 DF,  p-value: 5.247e-05
+
+[1] "WIAT_08"
+Anova Table (Type III tests)
+
+Response: WIAT_08
+            Partial eta^2  Sum Sq  Df F value Pr(>F)
+(Intercept)         0.000   0.000   1   0.000  1.000
+CC_01               0.013   3.147   1   3.238  0.073 .
+CC_02               0.045  11.672   1  12.010  0.001 ***
+CC_03               0.003   0.648   1   0.667  0.415
+CC_04               0.000   0.079   1   0.082  0.775
+Residuals                 245.896 253
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Call:
+lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04"),
+    data = df)
+
+Residuals:
+     Min       1Q   Median       3Q      Max
+-2.13032 -0.67717  0.05613  0.71742  2.13839
+
+Coefficients:
+            p.bonferroni  2.5 % 97.5 % Estimate Std. Error t value Pr(>|t|)
+(Intercept)        1.000 -0.121  0.121    0.000      0.061   0.000    1.000
+CC_01              0.366 -0.022  0.482    0.230      0.128   1.799    0.073 .
+CC_02              0.003 -0.631 -0.174   -0.402      0.116  -3.465    0.001 ***
+CC_03              1.000 -0.110  0.265    0.078      0.095   0.817    0.415
+CC_04              1.000 -0.203  0.272    0.034      0.121   0.286    0.775
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.9859 on 253 degrees of freedom
+Multiple R-squared:  0.04692,	Adjusted R-squared:  0.03185
+F-statistic: 3.114 on 4 and 253 DF,  p-value: 0.01589

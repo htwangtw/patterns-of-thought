@@ -133,14 +133,17 @@ class SCCA(object):
 
     def score(self, X, Y):
         '''
-        Returns the canonical correlation
+        Returns the prediction error
         '''
         if self.scale:
             Xk, Yk = zscore(X), zscore(Y)
         else:
             Xk, Yk = X, Y
         cancorr = _cancorr(Xk, Yk, self.u, self.v)
-        return cancorr
+        r2_test = (cancorr ** 2).sum()
+        r2_train = (self.cancorr_** 2).sum()
+        pred_error = np.abs(r2_train - r2_test)
+        return pred_error
 
     # def predict(self, X):
     #     X = zscore(X)

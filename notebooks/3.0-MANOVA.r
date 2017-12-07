@@ -3,10 +3,10 @@ library(heplots)
 library(lsr)
 library(MASS)
 
-# df <- read.csv('../data/processed/NYCQ_CCA_score_revision_r2z_4_0.5_0.1.csv', header = TRUE, sep = ',')
-df <- read.csv('../data/processed/NYCQ_CCA_score_revision_r2z-clean_4_0.9_0.2.csv', header = TRUE, sep = ',')
-# df <- read.csv('../data/processed/NYCQ_CCA_score_revision_zscore-clean_4_0.9_0.3.csv', header = TRUE, sep = ',')
-# df <- read.csv('../data/processed/NYCQ_CCA_score_revision_zscore_4_0.9_0.2.csv', header = TRUE, sep = ',')
+# df <- read.csv('../data/processed/NYCQ_CCA_score_revision_r2z_4_0.1_0.2.csv', header = TRUE, sep = ',')
+df <- read.csv('../data/processed/NYCQ_CCA_score_revision_r2z-clean_4_0.4_0.9.csv', header = TRUE, sep = ',')
+df <- read.csv('../data/processed/NYCQ_CCA_score_revision_zscore-clean_4_0.6_0.4.csv', header = TRUE, sep = ',')
+# df <- read.csv('../data/processed/NYCQ_CCA_score_revision_zscore_4_0.3_0.2.csv', header = TRUE, sep = ',')
 
 # set the target
 Y <- data.matrix(df[,5:12])

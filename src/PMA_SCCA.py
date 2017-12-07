@@ -133,7 +133,7 @@ class SCCA(object):
 
     def score(self, X, Y):
         '''
-        Returns the prediction error
+        Returns the prediction performance
         '''
         if self.scale:
             Xk, Yk = zscore(X), zscore(Y)
@@ -143,7 +143,7 @@ class SCCA(object):
         r2_test = (cancorr ** 2).sum()
         r2_train = (self.cancorr_** 2).sum()
         pred_error = np.abs(r2_train - r2_test)
-        return pred_error
+        return r2_test
 
     # def predict(self, X):
     #     X = zscore(X)

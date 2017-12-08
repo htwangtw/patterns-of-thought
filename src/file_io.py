@@ -11,8 +11,9 @@ from scipy.stats.mstats import zscore
 
 import joblib
 
+from nilearn.signal import clean
 
-def save_output(dataset, best_clf, X, Y, path):
+def save_output(dataset, confound, best_clf, X, Y, path):
     '''
     save the scores and cognitve measures in pandas dataframe
 
@@ -31,8 +32,16 @@ def save_output(dataset, best_clf, X, Y, path):
                               columns=dataset['CognitiveMeasures_labels'])
 
     df = pd.concat([info, cogmeasure], axis=1)
+    
+    # regress out confound
+    z_confound = zscore(confound)
+    # squared measures to help account for potentially nonlinear effects of these confounds
+    z2_confound = z_confound ** 2
+    conf_mat = np.hstack((z_confound, z2_confound))
 
-    df_z = pd.DataFrame(data=zscore(df), index=dataset['IDs'], columns=df.columns)
+    # clean signal
+    z_data = clean(zscore(df), confounds=conf_mat, detrend=False, standardize=False)
+    df_z = pd.DataFrame(data=z_data, index=dataset['IDs'], columns=df.columns)
     
     # save the scca scores
     X_scores, Y_scores = best_clf.transform(X, Y)

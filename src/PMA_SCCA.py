@@ -144,6 +144,7 @@ class SCCA(object):
         r2_train = (self.cancorr_** 2).sum()
         pred_error = np.abs(r2_train - r2_test)
         return r2_test
+        # return pred_error
 
     # def predict(self, X):
     #     X = zscore(X)

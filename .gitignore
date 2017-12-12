@@ -71,8 +71,5 @@ target/
 # Jupyter NB Checkpoints
 .ipynb_checkpoints/
 
-# exclude raw data from source control by default
-/data/
-
 # R history
 .Rhistory

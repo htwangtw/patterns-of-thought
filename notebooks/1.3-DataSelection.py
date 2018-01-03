@@ -156,5 +156,5 @@ for p in PATHS_ROI:
     dict_data[dat_name] = ROIlabs
 
 # save all cognitive measures for later use. Need to be preprocessed
-with open('./data/dict_SCCA_data_prepro_06092017.pkl', 'wb') as handle:
+with open('./data/dict_SCCA_data_prepro_node-node.pkl', 'wb') as handle:
     pickle.dump(dict_data, handle, protocol=pickle.HIGHEST_PROTOCOL)

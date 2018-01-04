@@ -1,0 +1,58 @@
+Cluster Index,Voxels,MAX,MAX X (vox),MAX Y (vox),MAX Z (vox),COG X (vox),COG Y (vox),COG Z (vox),hemisphere,Yeo7,
+1,7318,1,64,42,23,55.4,23.4,37.9,L,Visual,Visual
+2,7963,1,23,41,23,33,25.8,37.8,R,Visual,Visual
+3,6012,1,69,63,32,63.1,52.1,56.8,L,Somatomotor,Somatomotor
+4,2040,1,59,29,49,58.7,35.4,62,L,VentralAttention,Superior Parietal Lobule
+5,562,1,61,60,58,58.6,61.4,63.8,L,VentralAttention,Superior Frontal Gyrus
+6,73,1,64,21,48,64.5,21.4,50.2,L,VentralAttention,"Occipital Cortex, superior"
+7,941,1,69,41,22,69.3,34.3,32.6,L,VentralAttention,ITG
+8,152,1,68,64,47,69.6,64.9,52.7,L,VentralAttention,precentral gyrus
+9,5690,1,21,66,30,25.8,53.7,54.9,R,Somatomotor,Somatomotor
+10,745,1,46,73,47,47.9,67.3,58.6,L,DorsalAttention,Paracingulate Gyrus
+11,259,1,52,48,54,50.4,45,58.9,L,DorsalAttention,Precuneus
+12,309,1,59,85,46,59.7,83.8,51.7,L,DorsalAttention,Frontal pole
+13,1164,1,64,64,26,65.9,65.8,37.3,L,DorsalAttention,Insular
+14,102,1,73,36,38,73.4,35.1,41.3,L,DorsalAttention,MTG
+15,772,1,73,51,43,74.7,46.4,49.8,L,DorsalAttention,Parietal Operculum Cortex
+16,3324,1,61,60,12,58,69.1,21.9,L,Limbic,Limbic
+17,916,1,20,43,22,18.3,36.2,33.2,R,VentralAttention,MTG
+18,95,1,16,53,52,16.6,51.7,57.5,R,VentralAttention,"Supramarginal Gyrus, anterior"
+19,307,1,21,66,45,21.3,66.7,50.3,R,VentralAttention,precentral gyrus
+20,2600,1,23,22,46,32.4,34.2,62.9,R,VentralAttention,"Occipital Cortex, superior"
+21,469,1,30,60,58,30.7,61.8,63.6,R,VentralAttention,precentral gyrus
+22,118,1,49,27,52,47.5,27.4,58.4,L,Frontoparietal,Precuneus
+23,36,1,48,46,49,47,51.9,50.5,L,Frontoparietal,CG
+24,226,1,49,78,47,47.1,76.3,57,L,Frontoparietal,Paracingulate Gyrus
+25,123,1,55,69,61,56.7,69.1,66,L,Frontoparietal,Superior Frontal Gyrus
+26,155,1,58,83,27,59.1,85.9,29.3,L,Frontoparietal,"Frontal Pole, anterior"
+27,2172,1,66,85,32,65.2,80.8,45.4,L,Frontoparietal,Frontal pole + IFG
+28,617,1,61,37,54,67.1,37.2,59.6,L,Frontoparietal,AG
+29,39,1,61,71,32,60.3,73.8,33.9,L,Frontoparietal,Insular
+30,21,1,62,63,66,61.8,63.6,67,L,Frontoparietal,MFG
+31,314,1,73,39,23,74.5,38.6,28.6,L,Frontoparietal,ITG
+32,1385,1,49,37,38,47.9,37,51.1,L,Default,pCC
+33,5237,1,61,73,23,55.6,82.6,46.2,L,Default,Frontal pole
+34,50,1,57,48,24,55.8,48,26.2,L,Default,Parahippocampus
+35,1510,1,68,36,43,69.2,31.9,52.3,L,Default,AG
+36,2437,1,70,65,16,73.7,54.3,29,L,Default,Temporal Pole
+37,901,1,16,38,37,14.4,47.1,48.4,R,DorsalAttention,Parietal Operculum Cortex
+38,1250,1,24,65,26,23.5,67.4,36.8,R,DorsalAttention,Insular
+39,60,1,20,63,57,19.2,63.1,59.6,R,DorsalAttention,precentral gyrus
+40,20,1,18,81,36,18.5,82.3,37.2,R,DorsalAttention,MTG
+41,189,1,30,84,46,30.1,85.4,50.8,R,DorsalAttention,Frontal pole
+42,1153,1,44,73,47,40.9,63.6,60.1,R,DorsalAttention,Paracingulate Gyrus
+43,3341,1,28,60,12,31,69.2,21.3,R,Limbic,Limbic
+44,388,1,15,45,23,13.9,44.4,28.5,R,Frontoparietal,pMTG
+45,856,1,15,41,50,20.5,38.7,59.3,R,Frontoparietal,AG
+46,4222,1,32,81,26,25.6,80.2,47.6,R,Frontoparietal,Frontal pole + IFG
+47,15,1,21,26,51,22.4,25.5,53.2,R,Frontoparietal,Superior Occipital
+48,72,1,28,72,31,28.2,74.2,32.6,R,Frontoparietal,Insular
+49,133,1,37,31,51,40.8,28.4,57,R,Frontoparietal,Precuneus
+50,342,1,44,78,44,42.1,78.1,55,R,Frontoparietal,Paracingulate Gyrus
+51,52,1,43,41,56,42.7,43.9,57,R,Frontoparietal,pCG
+52,60,1,42,47,49,42.5,54.7,50.8,R,Frontoparietal,CG
+53,1599,1,20,66,16,16.4,58.1,27.4,R,Default,Temporal Pole
+54,1126,1,17,39,41,19,34.9,50.8,R,Default,AG
+55,467,1,28,73,26,22.3,77.5,31.4,R,Default,Frontal Orbital Cortex
+56,3024,1,43,88,27,39.3,86.8,46.9,R,Default,Frontal pole
+57,935,1,40,39,39,41.4,37.1,50.3,R,Default,pCC

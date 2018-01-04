@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-*.py*
+*.pyc
 
 # C extensions
 *.so
@@ -72,4 +72,8 @@ target/
 .ipynb_checkpoints/
 
 # R history
+.ropeproject/*
 .Rhistory
+
+# nilearn
+nilearn_cache

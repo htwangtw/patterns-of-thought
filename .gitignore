@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.pyc
+.*.py.un~
+
 
 # C extensions
 *.so
@@ -74,6 +76,7 @@ target/
 # R history
 .ropeproject/*
 .Rhistory
+.RData
 
 # nilearn
 nilearn_cache

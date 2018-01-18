@@ -42,7 +42,7 @@ for(i in c(1:length(colnames(Y)))){
       file="../reports/revision/Yeo7node_paraest_beta.txt",sep="\t", append = TRUE)
   cat("\n",
       file="../reports/revision/Yeo7node_paraest_beta.txt",sep="\t", append = TRUE)
-  cat(paraest$coefficients[,7],
+  cat(paraest$coefficients[,1],
       file="../reports/revision/Yeo7node_paraest_p.txt",sep="\t", append = TRUE)
   cat("\n",
       file="../reports/revision/Yeo7node_paraest_p.txt",sep="\t", append = TRUE)
@@ -90,7 +90,7 @@ for(i in c(1:length(colnames(Y_q)))){
       file="../reports/revision/Yeo7node_questionnaires_paraest_beta.txt",sep="\t", append = TRUE)
   cat("\n",
       file="../reports/revision/Yeo7node_questionnaires_paraest_beta.txt",sep="\t", append = TRUE)
-  cat(paraest$coefficients[,7],
+  cat(paraest$coefficients[,1],
       file="../reports/revision/Yeo7node_questionnaires_paraest_p.txt",sep="\t", append = TRUE)
   cat("\n",
       file="../reports/revision/Yeo7node_questionnaires_paraest_p.txt",sep="\t", append = TRUE)

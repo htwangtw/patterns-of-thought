@@ -31,6 +31,7 @@ labels = [
 plt.close("all")
 
 sns.set_style({"font.sans-serif": ["Arial"]})
+sns.set_context('talk', font_scale=1.2)
 f, ((ax11, ax12),
         (ax21, ax22),
         (ax31, ax32)) = plt.subplots(
@@ -56,7 +57,7 @@ for s, ax, label in zip(sig_sets, axes_lst, labels):
         ax.set_ylabel('{} | Others'.format(label[1]))
     else:
         ax.set_ylabel(' ')
-f.suptitle('Adjested Variable Plots', fontsize='x-large')
 f.tight_layout()
-f.subplots_adjust(top=0.95)
+f.subplots_adjust(top=0.92)
+f.suptitle('Adjested Variable Plots', fontsize='x-large')
 f.savefig('./reports/plots/av-plots.png', dpi=300)

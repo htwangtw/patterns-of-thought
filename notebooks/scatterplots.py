@@ -34,7 +34,7 @@ sns.set_style({"font.sans-serif": ["Arial"]})
 f, ((ax11, ax12),
         (ax21, ax22),
         (ax31, ax32)) = plt.subplots(
-                3, 2, figsize=(6, 6),
+                3, 2, figsize=(6, 8),
                 sharex='col', sharey='row')
 
 axes_lst = [ax11, ax12, ax21, ax22, ax31, ax32]
@@ -59,4 +59,4 @@ for s, ax, label in zip(sig_sets, axes_lst, labels):
 f.suptitle('Adjested Variable Plots', fontsize='x-large')
 f.tight_layout()
 f.subplots_adjust(top=0.95)
-f.savefig('./reports/plots/av-plots.png')
+f.savefig('./reports/plots/av-plots.png', dpi=300)

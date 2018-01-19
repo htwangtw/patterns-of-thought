@@ -16,13 +16,12 @@ colnames(Y_q) <- colnames(df[,13:20])
 # reorder
 Y <- Y[, c(1, 4, 5, 2, 3, 6, 7, 8)]
 # DV-intellegence EV-Yeo 7 MANOVA
-Yeo7_m1 <- lm(Y ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
-Yeo7_m2 <- lm(Y_q ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
+m1_task <- lm(Y ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
+m1_ques <- lm(Y_q ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
 
 # get manova eta square
 mod.manova <-  Manova(Yeo7_m1, type = 3, test = "Pillai", p.adjust.methods = "bonferroni")
 print(round(etasq(mod.manova, anova = TRUE), 3))
-
 # univariate results and parameter estimate
 for(i in c(1:length(colnames(Y)))){
   print(colnames(Y)[i])

@@ -6,6 +6,7 @@ from scipy import stats
 
 df_path = "./data/processed/NYCQ_CCA_score_revision_yeo7nodes_4_0.8_0.5.pkl"
 dataset = pd.read_pickle(df_path)
+dataset.loc[:, 'CC_03'] = - dataset.loc[:, 'CC_03']
 df_X = dataset.loc[:, 'CC_01':'CC_04']
 df_Y = dataset.loc[:, 'DKEFSCWI_40':'WIAT_08']
 
@@ -20,28 +21,19 @@ sig_sets = [
 
 
 def r_pearson(x, y):
-    return stats.pearsonr(x, y)[0]
+    return stats.pearsonr(x, y)[1]
 
 
 for s in sig_sets:
     x = dataset[s[0]]
     y = dataset[s[1]]
     X = df_X.drop(s[0], axis=1)
-    Y = df_Y.drop(s[1], axis=1)
-    dat = pd.concat((X, Y), axis=1)
-    if s[0] == 'CC_03':
-        x = - dataset[s[0]]
-    lr = LinearRegression(fit_intercept=True)
-    lr.fit(dat, x)
-    x_res = x - lr.predict(dat)
-    lr = LinearRegression(fit_intercept=True)
-    lr.fit(dat, y)
-    y_res = y - lr.predict(dat)
 
-    plt.close("all")
-    fig = sns.jointplot(x, y, kind="reg", stat_func=r_pearson)
-    fig.savefig('./reports/{}_{}.png'.format(s[0], s[1]))
-
-    plt.close("all")
-    fig = sns.jointplot(x_res, y_res, kind="reg", stat_func=r_pearson)
-    fig.savefig('./reports/{}_{}_res.png'.format(s[0], s[1]))
+    plt.close("all")#
+    sns.despine()
+    sns.set_style({"font.sans-serif": ["Arial"]})
+    f, ax = plt.subplots(figsize=(5, 6))
+    g = sns.regplot(x, y, x_partial=X, y_partial=X, ax=ax)
+    g.set(ylim=(-3, 3))
+    sns.despine()
+    f.savefig('./reports/plots/resplots/{}_{}.png'.format(s[0], s[1]))

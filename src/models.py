@@ -16,8 +16,8 @@ from src.visualise import set_text_size
 
 def clean_confound(RS, COG, confmat):
     '''
-    We first created the confound matrix according to Smith et al. (2015). 
-    The confound variables are motion (Jenkinson), sex, and age. 
+    We first created the confound matrix according to Smith et al. (2015).
+    The confound variables are motion (Jenkinson), sex, and age.
     We also created squared confound measures to help account for potentially nonlinear effects of these confounds.
     '''
 
@@ -55,10 +55,10 @@ def nested_kfold_cv_scca(X, Y, R=None, n_selected=4, out_folds=5, in_folds=5, re
     grid = search_grid_scca(reg_X, reg_Y)
     KF_out = KFold(n_splits=out_folds, shuffle=True, random_state=1)
     KF_in = KFold(n_splits=in_folds, shuffle=True, random_state=1)
-    
+
     n_penX = int(reg_X[1] * 10 - reg_X[0] + 1)
     n_penY = int(reg_Y[1] * 10 - reg_Y[0] + 1)
-    
+
     best_model = None
     best_score = 0
     pred_scores = []
@@ -69,7 +69,7 @@ def nested_kfold_cv_scca(X, Y, R=None, n_selected=4, out_folds=5, in_folds=5, re
         Y_discovery, Y_test = Y[train_idx], Y[test_idx]
         if R is not None:
             R_discovery, R_test = R[train_idx], R[test_idx]
-        
+
         para_mean_score = np.zeros((n_penX, n_penY))
         for j, parameters in enumerate(iter(grid)):
             para_idx = np.unravel_index(j, para_mean_score.shape) # (C_x,C_y)
@@ -85,23 +85,23 @@ def nested_kfold_cv_scca(X, Y, R=None, n_selected=4, out_folds=5, in_folds=5, re
                     R_train, R_confirm = R_discovery[train_idx], R_discovery[test_idx]
                     X_train, Y_train, R_train = clean_confound(X_train, Y_train, R_train)
                     X_confirm, Y_confirm, R_confirm = clean_confound(X_confirm, Y_confirm, R_confirm)
-                    
+
                 model.fit(X_train, Y_train)
-                
+
                 pred_ev = model.score(X_confirm, Y_confirm)
 
                 inner_scores.append(pred_ev)
-                    
+
             para_mean_score[para_idx] = np.mean(inner_scores)
-        
+
         idx = np.argmax(para_mean_score)
         d_idx = np.unravel_index(idx, para_mean_score.shape)
         C = 0.1 * (np.array(d_idx) + 1)
-        
+
         if R is not None:
             X_discovery, Y_discovery, R_discovery = clean_confound(X_discovery, Y_discovery, R_discovery)
             X_test, Y_test, R_test = clean_confound(X_test, Y_test, R_test)
-        
+
         para_best_model = SCCA(n_components=n_selected, scale=True, n_iter=100,
                          penX=C[0], penY=C[1],
                         )
@@ -116,11 +116,11 @@ def nested_kfold_cv_scca(X, Y, R=None, n_selected=4, out_folds=5, in_folds=5, re
             print('\nNew Best model: \n {:} components,penalty x: {:}, penalty y: {:}\nOOS performance: {}'.format(
             best_model.n_components, best_model.penX,  best_model.penY,  best_score))
         para_search[..., i] = para_mean_score
-    
+
     # final parameter
     print('\nBest parameters based on outer fold ev results: X-{:}; Y-{:}\n'.format(
             best_model.penX, best_model.penY))
-    
+
     return (para_search, best_model, pred_scores)
 
 def parameter_grid(para, pred_evs, i):
@@ -131,9 +131,9 @@ def parameter_grid(para, pred_evs, i):
 
     idx = np.argmax(para)
     d_idx = np.unravel_index(idx, para.shape)
-    
+
     title = 'Sparsity Search - Fold {}'.format(i + 1)
-    
+
     fig = plt.figure()
     ax = fig.add_subplot(111)
     hm = ax.matshow(para.T, vmin=0, vmax=para.max(), cmap="inferno")
@@ -149,30 +149,36 @@ def parameter_grid(para, pred_evs, i):
     # Add the patch to the Axes
     ax.add_patch(rect)
     # add prediction error
-    ax.annotate('Test EV:{:.3f}'.format(pred_evs), (0,0), (0, -40), 
+    ax.annotate('Test EV:{:.3f}'.format(pred_evs), (0,0), (0, -40),
                      xycoords='axes fraction', textcoords='offset points', va='top',
                      fontstyle='italic', fontsize=10)
     return fig
 
-def permutate_scca(X, Y, d, model, n_permute=1000):
+def permutate_scca(X, Y, d, model, n_permute=1000, aug=True):
     '''
     find the best variates among all components
     by calculating the FWE-corrected p-value based on FDR
     '''
+    X_orig, Y_orig = X, Y
     n_mod_select = model.n_components
     permute_cancorr = np.zeros((n_permute, n_mod_select))
     np.random.seed(42)
     for i in range(n_permute):
+        if aug:
+            aug_idx = np.random.randint(1, Y_orig.shape[0], 1000)
+            X, Y = X_orig[aug_idx], Y_orig[aug_idx]
+
         # permute the cognitive measures
         per_idx = np.random.permutation(Y.shape[0])
         cur_y = Y[per_idx, :]
+
         permute_model = copy.deepcopy(model)
         permute_model.fit(X, cur_y)
         cur_cancorr = permute_model.cancorr_
         permute_cancorr[i, :] = cur_cancorr
 
     # calculate the FWE-corrected p value
-    p_val = (1 + np.sum(d < np.repeat(permute_cancorr[1:, 0:1], n_mod_select, axis=1),0)) / float(n_permute)
+    p_val = (1 + np.sum(d < np.repeat(permute_cancorr[1:, 0:1], n_mod_select, axis=1), 0)) / float(n_permute)
     results = {
         'Component': range(1, n_mod_select + 1),
         'P-values': p_val,
@@ -180,6 +186,6 @@ def permutate_scca(X, Y, d, model, n_permute=1000):
         'alpah0.01': p_val < 0.01,
         'alpah0.001': p_val < 0.001,
     }
-    
+
     df_permute = pd.DataFrame.from_dict(results).set_index('Component')
     return df_permute

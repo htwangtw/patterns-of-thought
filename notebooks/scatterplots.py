@@ -20,17 +20,12 @@ sig_sets = [
 ]
 
 
-def r_pearson(x, y):
-    return stats.pearsonr(x, y)[1]
-
-
 for s in sig_sets:
     x = dataset[s[0]]
     y = dataset[s[1]]
     X = df_X.drop(s[0], axis=1)
 
-    plt.close("all")#
-    sns.despine()
+    plt.close("all")
     sns.set_style({"font.sans-serif": ["Arial"]})
     f, ax = plt.subplots(figsize=(5, 6))
     g = sns.regplot(x, y, x_partial=X, y_partial=X, ax=ax)

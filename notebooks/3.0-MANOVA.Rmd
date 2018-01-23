@@ -1,4 +1,4 @@
----
+--
 title: "Univariate scatter plots"
 output: html_notebook
 ---
@@ -6,8 +6,9 @@ output: html_notebook
 ```{r}
 library(car)
 library(heplots)
-library(lsr)
 library(MASS)
+library(ggplot2)
+library(reshape2)
 ```
 
 Prepare the data
@@ -15,77 +16,72 @@ Prepare the data
 df <- read.csv('../data/processed/NYCQ_CCA_score_revision_yeo7nodes_4_0.8_0.5.csv', header = TRUE, sep = ',')
 # reverse component 3 for intepretation
 df$CC_03 <- df$CC_03 * -1
+```
+```{r}
 # set the target
-Y <- data.matrix(df[,5:12])
-Y_q <- data.matrix(df[,13:20])
+tasks <- data.matrix(df[,5:12])
+questions <- data.matrix(df[,13:20])
 
-colnames(Y) <- colnames(df[,5:12])
-colnames(Y_q) <- colnames(df[,13:20])
+colnames(tasks) <- colnames(df[,5:12])
+colnames(questions) <- colnames(df[,13:20])
 
 # reorder the tasks for presentation
-Y <- Y[, c(1, 4, 5, 2, 3, 6, 7, 8)]
-
+tasks <- tasks[, c(1, 4, 5, 2, 3, 6, 7, 8)]
+```
+PCA
+```{r}
+task.pca <- prcomp(tasks, center = TRUE, scale. = TRUE)
+plot(task.pca, type = "l")
+task.pca <- prcomp(tasks, center = TRUE, scale. = TRUE, rank. = 1)
+summary(task.pca)
+melted<-cbind(colnames(tasks), melt(task.pca$rotation))
+ggplot(melted)+geom_bar(aes(x=Var1, y=value), stat = "identity") + theme_classic()
+task.pc <- task.pca$x
 ```
 
-MANOVA
+
+```{r}
+question.pca <- prcomp(questions, center = TRUE, scale. = TRUE)
+plot(question.pca, type = "l")
+question.pca <- prcomp(questions, center = TRUE, scale. = TRUE, rank. = 1)
+summary(question.pca)
+melted<-cbind(colnames(questions), melt(question.pca$rotation))
+ggplot(melted)+geom_bar(aes(x=Var1, y=value), stat = "identity") + theme_classic()
+question.pc <- question.pca$x
+```
+
 ```{r}
 # DV-intellegence EV-Yeo 7 MANOVA
-m1_task <- lm(Y ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
-m1_ques <- lm(Y_q ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
+m1_task <- lm(task.pc ~ CC_01 + CC_02 + CC_03, data = df)
+m1_ques <- lm(question.pc ~ CC_01 + CC_02 + CC_03, data = df)
 
-# get manova eta square
-mod.manova <-  Manova(Yeo7_m1, type = 3, test = "Pillai", p.adjust.methods = "bonferroni")
-print(round(etasq(mod.manova, anova = TRUE), 3))
+# Parameter estimate
+paraest <- summary(m1_task, test = "Pillai")
+
+# attatch adjusted p and CI
+p.raw<-paraest$coefficients[,4]
+paraest$coefficients <- cbind(p.adjust(p.raw, "bonferroni"), confint(m1_task), paraest$coefficients)
+colnames(paraest$coefficients)[1] <- "p.bonferroni"
+
+print(paraest)
+
+avPlots(lm(task.pc ~ CC_01 + CC_02 + CC_03 , data = df), ~ CC_01, 
+        marginal.scale=TRUE, grid=FALSE, col.lines='black', pch=20)
+
+avPlots(lm(task.pc ~ CC_01 + CC_02 + CC_03 , data = df), ~ CC_03, 
+        marginal.scale=TRUE, grid=FALSE, col.lines='black', pch=20)
 ```
-
 ```{r}
-for(i in c(1:length(colnames(Y)))){
-  l <- lm(formula = paste(colnames(Y)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04") , data = df)
-  # Univariate
-  print(round(etasq(l, type = 3, anova = TRUE), 3))
+# DV-intellegence EV-Yeo 7 MANOVA
+m1_ques <- lm(question.pc ~ CC_01 + CC_02 + CC_03, data = df)
+
+# Parameter estimate
+paraest <- summary(m1_ques, test = "Pillai")
   
-  # Parameter estimate
-  paraest <- summary(l, test = "Pillai")
-    
-  # attatch adjusted p and CI
-  p.raw<-paraest$coefficients[,4]
-  paraest$coefficients <- cbind(p.adjust(p.raw, "bonferroni"), confint(l), paraest$coefficients)
-  colnames(paraest$coefficients)[1] <- "p.bonferroni"
+# attatch adjusted p and CI
+p.raw<-paraest$coefficients[,4]
+paraest$coefficients <- cbind(p.adjust(p.raw, "bonferroni"), confint(m1_ques), paraest$coefficients)
+colnames(paraest$coefficients)[1] <- "p.bonferroni"
 
-  print(paraest)
-}
-```
-
-Plot
-
-```{r}
-
-sig_results <- c("PROV_16", "INT_17","WIAT_08")
-for(i in c(1:length(sig_results))){
-  avPlots(lm(formula = paste(sig_results[i], " ~ CC_01 + CC_02 + CC_03 + CC_04") , data = df), ~ CC_01, 
-          marginal.scale=TRUE, grid=FALSE, col.lines='black', pch=20)
-  avPlots(lm(formula = paste(sig_results[i], " ~ CC_01 + CC_02 + CC_03 + CC_04") , data = df), ~ CC_03, 
-          marginal.scale=TRUE, grid=FALSE, col.lines='black', pch=20)
-}
-```
-```{r}
-model <- lm(WIAT_08 ~ CC_01 + CC_02 + CC_03 + CC_04, data = df)
-termplot(model, partial.resid = TRUE, se=TRUE)
-```
-
-```{r}
-
-model <- lm(INT_17 ~ CC_01 + CC_02 + CC_03 + CC_04, data = df)
-termplot(model, partial.resid = TRUE, se=TRUE)
-```
-```{r}
-
-model <- lm(PROV_16 ~ CC_01 + CC_02 + CC_03 + CC_04, data = df)
-termplot(model, partial.resid = TRUE, terms = "CC_01", se=TRUE, 
-         xlabs="Component 1", ylabs = "Proverb Test | Others")
-
-termplot(model, partial.resid = TRUE, terms = "CC_03", se=TRUE, 
-         xlabs="Component 3", ylabs = "Proverb Test | Others",
-         col.term = "black", col.se = "grey", col.res = "black", pch=20)
-
+print(paraest)
 ```

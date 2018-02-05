@@ -28,42 +28,87 @@ colnames(questions) <- colnames(df[,13:20])
 # reorder the tasks for presentation
 tasks <- tasks[, c(1, 4, 5, 2, 3, 6, 7, 8)]
 ```
-PCA
+
+# Simple correlation of the data
+
+```{r}
+cor(tasks)
+```
+```{r}
+cor(df[,21:24])
+```
+
+# MANOVA on all four components
+```{r}
+l <- lm(tasks ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
+# get manova eta square
+mod.manova <-  Manova(l, type = 3, test = "Pillai", p.adjust.methods = "bonferroni")
+print(round(etasq(mod.manova, anova = TRUE), 3))
+
+l <- lm(questions ~ CC_01 + CC_02 + CC_03 + CC_04 , data = df)
+# get manova eta square
+mod.manova <-  Manova(l, type = 3, test = "Pillai", p.adjust.methods = "bonferroni")
+print(round(etasq(mod.manova, anova = TRUE), 3))
+```
+
+# Univeriate of the MANOVA 
+```{r}
+for(i in c(1:length(colnames(tasks)))){
+  l <- lm(formula = paste(colnames(tasks)[i], " ~ CC_01 + CC_02 + CC_03 + CC_04") , data = df)
+  # Univariate
+  print(round(etasq(l, type = 3, anova = TRUE), 3))
+  
+  # Parameter estimate
+  paraest <- summary(l, test = "Pillai")
+    
+  # attatch adjusted p and CI
+  p.raw<-paraest$coefficients[,4]
+  paraest$coefficients <- cbind(p.adjust(p.raw, "bonferroni"), confint(l), paraest$coefficients)
+  colnames(paraest$coefficients)[1] <- "p.bonferroni"
+
+  print(paraest)
+}
+```
+
+
+
+# PCA of the tasks and the questionnaire
 ```{r}
 task.pca <- prcomp(tasks, center = TRUE, scale. = TRUE)
 plot(task.pca, type = "l")
-task.pca <- prcomp(tasks, center = TRUE, scale. = TRUE, rank. = 1)
+# task.pca <- prcomp(tasks, center = TRUE, scale. = TRUE, rank. = 1)
 summary(task.pca)
-melted<-cbind(colnames(tasks), melt(task.pca$rotation))
-ggplot(melted)+geom_bar(aes(x=Var1, y=value), stat = "identity") + theme_classic()
-task.pc <- task.pca$x
+melted<-cbind(colnames(tasks), melt(task.pca$rotation[, 1]))
+ggplot(melted)+geom_bar(aes(x=colnames(tasks), y=value), stat = "identity") + theme_classic()
+df$task.pc <- task.pca$x[, 1] * -1
 ```
 
 
 ```{r}
 question.pca <- prcomp(questions, center = TRUE, scale. = TRUE)
 plot(question.pca, type = "l")
-question.pca <- prcomp(questions, center = TRUE, scale. = TRUE, rank. = 1)
+# question.pca <- prcomp(questions, center = TRUE, scale. = TRUE, rank. = 1)
 summary(question.pca)
-melted<-cbind(colnames(questions), melt(question.pca$rotation))
-ggplot(melted)+geom_bar(aes(x=Var1, y=value), stat = "identity") + theme_classic()
-question.pc <- question.pca$x
+melted<-cbind(colnames(questions), melt(question.pca$rotation[,1]))
+ggplot(melted)+geom_bar(aes(x=colnames(questions), y=value), stat = "identity") + theme_classic()
+question.pc <- question.pca$x[,1]
+df$question.pc<- task.pca$x[, 1]
 ```
 
+# Fit linear models using only the significant components and the PCs
 ```{r}
 # DV-intellegence EV-Yeo 7 MANOVA
-m1_task <- lm(task.pc ~ CC_01 + CC_02 + CC_03, data = df)
-m1_ques <- lm(question.pc ~ CC_01 + CC_02 + CC_03, data = df)
+m1_task <- lm(task.pc ~ CC_01 + CC_02 + CC_03 + CC_04, data = df)
 
 # Parameter estimate
 paraest <- summary(m1_task, test = "Pillai")
-
 # attatch adjusted p and CI
-p.raw<-paraest$coefficients[,4]
-paraest$coefficients <- cbind(p.adjust(p.raw, "bonferroni"), confint(m1_task), paraest$coefficients)
-colnames(paraest$coefficients)[1] <- "p.bonferroni"
-
-print(paraest)
+paraest$coefficients <- cbind(confint(m1_task), paraest$coefficients)
+paraest$coefficients <- round(paraest$coefficients, 3)
+print(paraest, 3)
+```
+```{r}
+write.csv(df, file = "../data/processed/NYCQ_CCA_score_revision_withPC.csv")
 
 avPlots(lm(task.pc ~ CC_01 + CC_02 + CC_03 , data = df), ~ CC_01, 
         marginal.scale=TRUE, grid=FALSE, col.lines='black', pch=20)
@@ -84,4 +129,16 @@ paraest$coefficients <- cbind(p.adjust(p.raw, "bonferroni"), confint(m1_ques), p
 colnames(paraest$coefficients)[1] <- "p.bonferroni"
 
 print(paraest)
+```
+
+```{r}
+cor(df[,21:25])
+```
+
+```{r}
+cor(tasks, df[,21:25])
+```
+
+```{r}
+cor.test(tasks[,1], df[,21])
 ```

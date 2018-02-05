@@ -54,4 +54,4 @@ for s, ax, label in zip(sig_sets, axes_lst, labels):
 f.tight_layout()
 # f.subplots_adjust(top=0.92)
 # f.suptitle('Adjested Variable Plots', fontsize='x-large')
-f.savefig('./reports/plots/av-plots.png', dpi=300)
+f.savefig('./reports/revision/plots/av-plots.png', dpi=300)

@@ -1,21 +1,89 @@
-import copy
-import os, sys
+# Danilo's path
+
+MY_FIX_SIZE = (13, 10)
+
+import os
+import glob
+import os.path as op
+os.chdir('/Users/admin/Dropbox/socialnet_project/scripts')
+import nibabel as nib
 import numpy as np
-import pandas as pd
-import matplotlib
-import matplotlib as mpl
 import matplotlib.pyplot as plt
-import matplotlib.cm as cm
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+from nose.tools import assert_true
+import nilearn
+from nilearn.input_data import NiftiMasker, NiftiLabelsMasker
+from nilearn.image import resample_img, smooth_img
+from nilearn.plotting import plot_stat_map
 
-from scipy.stats.mstats import zscore
+import collections
+seed_dict = collections.OrderedDict([
+('aMCC', r'2015.11.10_seeds_final/seed_aMCC_vox200.nii.gz'),
+('dmPFC', r'2015.11.10_seeds_final/seed_dmPFC_vox200.nii.gz'),
+('FP', r'2015.11.10_seeds_final/seed_FP_vox200.nii.gz'),
+('AI_L', r'2015.11.10_seeds_final/seed_lAI_vox200.nii.gz'),
+('AM_L', r'2015.11.10_seeds_final/seed_lAM_vox200.nii.gz'),
+('CEREB_L', r'2015.11.10_seeds_final/seed_lCb_vox200.nii.gz'),
+('FG_L', r'2015.11.10_seeds_final/seed_lFFA_vox200.nii.gz'),
+('HC_L', r'2015.11.10_seeds_final/seed_lHC_vox200.nii.gz'),
+('IFG_L', r'2015.11.10_seeds_final/seed_lIFG_vox200.nii.gz'),
+('MNS_PC_L', r'2015.11.10_seeds_final/seed_lIPL_vox200.nii.gz'),
+('MTG_L', r'2015.11.10_seeds_final/seed_lMTG_vox200.nii.gz'),
+('MNS_MTV5_L', r'2015.11.10_seeds_final/seed_lMTV5_vox200.nii.gz'),
+('NAC_L', r'2015.11.10_seeds_final/seed_lNAcc_vox200.nii.gz'),
+('pSTS_L', r'2015.11.10_seeds_final/seed_lpSTS_vox200.nii.gz'),
+('MNS_BA6_L', r'2015.11.10_seeds_final/seed_lSMA_vox200.nii.gz'),
+('TP_L', r'2015.11.10_seeds_final/seed_lTP_vox200.nii.gz'),
+('TPJ_L', r'2015.11.10_seeds_final/seed_lTPJ_vox200.nii.gz'),
+('PCC', r'2015.11.10_seeds_final/seed_PCC_vox200.nii.gz'),
+('pMCC', r'2015.11.10_seeds_final/seed_pMCC_vox200.nii.gz'),
+('Prec', r'2015.11.10_seeds_final/seed_PCu_vox200.nii.gz'),
+('rACC', r'2015.11.10_seeds_final/seed_rACC_vox200.nii.gz'),
+('AI_R', r'2015.11.10_seeds_final/seed_rAI_vox200.nii.gz'),
+('AM_R', r'2015.11.10_seeds_final/seed_rAM_vox200.nii.gz'),
+('CEREB_R', r'2015.11.10_seeds_final/seed_rCb_vox200.nii.gz'),
+('FG_R', r'2015.11.10_seeds_final/seed_rFFA_vox200.nii.gz'),
+('HC_R', r'2015.11.10_seeds_final/seed_rHC_vox200.nii.gz'),
+('IFG_R', r'2015.11.10_seeds_final/seed_rIFG_vox200.nii.gz'),
+('MNS_PC_R', r'2015.11.10_seeds_final/seed_rIPL_vox200.nii.gz'),
+('MTG_R', r'2015.11.10_seeds_final/seed_rMTG_vox200.nii.gz'),
+('MNS_MTV5_R', r'2015.11.10_seeds_final/seed_rMTV5_vox200.nii.gz'),
+('NAC_R', r'2015.11.10_seeds_final/seed_rNAcc_vox200.nii.gz'),
+('pSTS_R', r'2015.11.10_seeds_final/seed_rpSTS_vox200.nii.gz'),
+('MNS_BA6_R', r'2015.11.10_seeds_final/seed_rSMA_vox200.nii.gz'),
+('TP_R', r'2015.11.10_seeds_final/seed_rTP_vox200.nii.gz'),
+('TPJ_R', r'2015.11.10_seeds_final/seed_rTPJ_vox200.nii.gz'),
+('vmPFC', r'2015.11.10_seeds_final/seed_vmPFC_vox200.nii.gz')])
+seed_names = seed_dict.keys()
 
-# loa my modules
-from src.utils import load_pkl
-from src.visualise import *
+a = np.load('dump_RS_intra.npy')
+b = np.load('dump_RS_extra.npy')
+c = np.load('dump_MACM_intra.npy')
+d = np.load('dump_MACM_extra.npy')
 
-import joblib
-import pickle
+# cons_mat = (a + b + c + d) / 4.
+cons_mat = (a + c) / 2.
+cons_mat = c
+
+
+
+
+"""
+This code was adapted from the following recipe:
+    * http://altanalyze.blogspot.se/2012/06/hierarchical-clustering-heatmaps-in.html
+    * http://code.activestate.com/recipes/578175/
+
+Which was in turn inspired by many other posts:
+   * http://stackoverflow.com/questions/7664826
+   * http://stackoverflow.com/questions/2982929
+   * http://stackoverflow.com/questions/2455761
+
+Running this with cosine or other distance metrics can often produce negative Z scores during clustering, so adjustments to the clustering may be required. Information about distance measures can be found here:
+   * http://docs.scipy.org/doc/scipy/reference/cluster.hierarchy.html
+   * http://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html
+
+The documentation about the custom color gradients can be found here:
+   * http://matplotlib.sourceforge.net/examples/pylab_examples/custom_cmap.html
+"""
 
 # Built-in modules #
 import random
@@ -27,31 +95,6 @@ import scipy.cluster.hierarchy as sch
 import scipy.spatial.distance as dist
 import names
 
-model_path = './models/SCCA_Yeo7nodes_revision_4_0.80_0.50.pkl'
-label_path = '~/yeo7_cluster/names.csv'
-dat_path = './data/processed/dict_SCCA_data_prepro_revision1.pkl'
-
-# load data
-model = joblib.load(model_path)
-dataset = load_pkl(dat_path)
-df_label = pd.read_csv(label_path)
-
-#df = pd.read_pickle(df_path)
-u, v = model.u * [1, 1, -1, 1] , model.v * [1, 1, -1, 1]
-n = model.n_components
-
-# create labels for the nodes
-seed_names = df_label.iloc[:, 0].apply(str) + '-' + df_label.iloc[:, -2] + '-' + df_label.iloc[:, -3] + ' ' + df_label.iloc[:, -1]
-
-# unflatten the functional corr coeff
-from src.utils import unflatten
-
-mat = []
-for i in range(4):
-    mat.append(unflatten(u[:, i]))
-
-# plot size
-MY_FIX_SIZE = (13, 10)
 ###############################################################################
 # Create Custom Color Gradients #
 red_black_sky     = {'red':   ((0.0, 0.0, 0.0), (0.5, 0.0, 0.1), (1.0, 1.0, 1.0)),
@@ -85,7 +128,7 @@ def plot_hierarchical_heatmap_core(frame):
     column_method  = 'single'     # Can be: linkage, single, complete, average, weighted, centroid, median, ward
     row_metric     = 'braycurtis' # Can be: see scipy documentation
     column_metric  = 'braycurtis' # Can be: see scipy documentation
-    gradient_span  = 'min_to_max_centered'   # Can be: min_to_max, min_to_max_centered, only_max, only_min
+    gradient_span  = 'only_max'   # Can be: min_to_max, min_to_max_centered, only_max, only_min
     color_gradient = 'coolwarm'   # Can be: see color_gradients dictionary
     fig_weight = MY_FIX_SIZE[0]
     fig_height = MY_FIX_SIZE[1]
@@ -241,7 +284,7 @@ def plot_hierarchical_heatmap(data_matrix, row_names, column_names):
 
     frame = df
     fig, axm, axcb, cb = plot_hierarchical_heatmap_core(df)
-    cb.set_label("Correlation Coefficient")
+    cb.set_label("Random value")
 
 
 # SC/intra/hierarchical: print + save networks
@@ -249,35 +292,10 @@ try:
   os.mkdir('plots')
 except:
     pass
-for i in range(4):
-    # plot_hierarchical_heatmap(mat[i], seed_names, seed_names)
-    # plt.savefig("plots/hierarchical_consensus_{}.png".format(i + 1), dpi=500)
-    # plt.savefig("plots/hierarchical_consensus_{}.pdf".format(i + 1), dpi=500)
-    # plt.close()
+plot_hierarchical_heatmap(cons_mat, seed_names, seed_names)
+stopper
+plt.savefig("plots/hierarchical_consensus.png", dpi=500)
+plt.savefig("plots/hierarchical_consensus.pdf", dpi=500)
+plt.show()
 
-    set_text_size(8)
-    fig = plt.figure(figsize=(20, 20))
-    ax = fig.add_subplot(111)
-    max = np.abs(mat[i]).max()
-    m = ax.matshow(mat[i], vmax=max, vmin=-max, cmap='RdBu_r')
-    ax.set_xticks(np.arange(mat[i].shape[1]))
-    ax.set_yticks(np.arange(mat[i].shape[0]))
-    ax.set_xticklabels(seed_names, rotation='vertical')
-    ax.set_yticklabels(seed_names)
-    fig.colorbar(m)
-    plt.savefig("./revision/plots/yeo7node_{}_2212.png".format(i + 1), dpi=300, tight_layout=True)
-
-
-v_labels = dataset['MRIQ_labels']
-
-#plt.show()
-set_text_size(12)
-fig = plt.figure(figsize=(3, 5))
-ax = fig.add_subplot(111)
-max = np.abs(v).max()
-m = ax.matshow(v, vmax=max, vmin=-max, cmap='RdBu_r')
-fig.colorbar(m)
-plt.yticks(range(31), v_labels)
-plt.xticks(range(4), range(1, 5))
-plt.savefig('./revision/plots/questions_2212.png', dpi=300, tight_layout=True)
 

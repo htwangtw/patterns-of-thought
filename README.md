@@ -1,3 +1,5 @@
+# This repository is an archive of the analysis. It will no longer be maintained.
+
 Patterns of Thought
 ==============================
 
